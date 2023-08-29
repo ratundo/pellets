@@ -8,6 +8,13 @@ django = "==4.2.4"
 flake8 = "*"
 black = "*"
 isort = "*"
+django-phonenumber-field = {version = "*", extras = ["phonenumbers"]}
+requests = "*"
+pillow = "*"
+pygraphviz = "*"
+pyparsing = "*"
+pydot = "*"
+django-extensions = "*"
 
 [dev-packages]
 
