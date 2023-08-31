@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class="container" style="background-color: #757575; padding: 20px;">
+    <form method="POST" style="max-width: 800px; margin: auto;">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="input-field col s12 m4">
+                {{ form.customer_name.label_tag }}
+                {{ form.customer_name }}
+            </div>
+            <div class="input-field col s12 m4">
+                {{ form.company.label_tag }}
+                {{ form.company }}
+            </div>
+            <div class="input-field col s12 m4">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 m4">
+                {{ form.phone_number.label_tag }}
+                {{ form.phone_number }}
+            </div>
+            <div class="input-field col s12 m4">
+                <!-- Используем класс dropdown-trigger для создания выпадающего списка -->
+                <a class="dropdown-trigger" href="#!" data-target="languageDropdown">
+                    {{ form.language.label_tag }}
+                    <i class="material-icons right">arrow_drop_down</i>
+                </a>
+                <!-- Используем класс dropdown-content для содержимого выпадающего списка -->
+                <ul id="languageDropdown" class="dropdown-content">
+                    {% for language in form.language.field.queryset %}
+                        <li><a href="#!">{{ language.language_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form.place_of_delivery.label_tag }}
+                {{ form.place_of_delivery }}
+            </div>
+            <div class="input-field col s12 m6">
+                {{ form.zip_code.label_tag }}
+                {{ form.zip_code }}
+            </div>
+            <div class="input-field col s12 m6">
+                <!-- Используем класс dropdown-trigger для создания выпадающего списка -->
+                <a class="dropdown-trigger" href="#!" data-target="countryDropdown">
+                    {{ form.country.label_tag }}
+                    <i class="material-icons right">arrow_drop_down</i>
+                </a>
+                <!-- Используем класс dropdown-content для содержимого выпадающего списка -->
+                <ul id="countryDropdown" class="dropdown-content">
+                    {% for country in form.country.field.queryset %}
+                        <li><a href="#!">{{ country.country_region }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form.goods.label_tag }}
+                <br>
+                {% for choice in form.goods.field.choices %}
+                    <p>
+                        <label>
+                            <input type="checkbox" name="{{ form.goods.html_name }}" value="{{ choice.0 }}">
+                            <span>{{ choice.1 }}</span>
+                        </label>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <button type="submit" class="btn btn-info">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+
+{% extends 'index.html' %}
+

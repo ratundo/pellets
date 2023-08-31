@@ -1,3 +1,14 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from inquiry.forms import CombinedInquiryForm
+from inquiry.models import Inquiry
+
 
 # Create your views here.
+class CombinedInquiryCreateView(CreateView):
+    model = Inquiry
+    form_class = CombinedInquiryForm
+    template_name = 'inquiry.html'
+    success_url = reverse_lazy("")

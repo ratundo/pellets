@@ -10,7 +10,7 @@ from main.models import Countries, Languages
 class Customer(models.Model):
     name = models.CharField(max_length=150)
     company = models.CharField(max_length=50)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     phone_number = PhoneNumberField(_("phone number"), max_length=16, unique=True)
     language = models.ForeignKey(Languages, default=1, on_delete=models.CASCADE)
 

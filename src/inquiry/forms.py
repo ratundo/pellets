@@ -1,25 +1,44 @@
 from django import forms
 
-from main.models import Countries, Languages
+from phonenumber_field.formfields import PhoneNumberField
 
-from .models import Customer, Inquiry
-
-
-class CustomerForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = ["name", "company", "email", "phone_number", "language"]
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["language"].queryset = Languages.objects.all()
+from goods.models import Goods
+from main.models import Languages, Countries
+from inquiry.models import Customer, Inquiry
 
 
-class InquiryForm(forms.ModelForm):
+class CombinedInquiryForm(forms.ModelForm):
+    customer_name = forms.CharField(max_length=150)
+    company = forms.CharField(max_length=50)
+    email = forms.EmailField()
+    phone_number = PhoneNumberField(max_length=16)
+    language = forms.ModelChoiceField(queryset=Languages.objects.all(), empty_label="Select a language")
+    country = forms.ModelChoiceField(queryset=Countries.objects.all(), empty_label="Select a country")
+
+    place_of_delivery = forms.CharField(max_length=150)
+    zip_code = forms.CharField(max_length=8)
+
+    goods = forms.ModelMultipleChoiceField(queryset=Goods.objects.all(),
+                                           required=False)
+
     class Meta:
         model = Inquiry
-        fields = ["place_of_delivery", "zip_code", "goods", "country"]
+        fields = ['customer_name', 'company', 'email', 'phone_number', 'language',
+                  'place_of_delivery', 'zip_code', 'country', 'goods']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["country"].queryset = Countries.objects.all()
+    def save(self, commit=True):
+        customer = Customer.objects.create(
+            name=self.cleaned_data['customer_name'],
+            company=self.cleaned_data['company'],
+            email=self.cleaned_data['email'],
+            phone_number=self.cleaned_data['phone_number'],
+            language=self.cleaned_data['language']
+        )
+        inquiry = Inquiry.objects.create(
+            customer=customer,
+            place_of_delivery=self.cleaned_data['place_of_delivery'],
+            zip_code=self.cleaned_data['zip_code'],
+            country=self.cleaned_data['country']
+        )
+        inquiry.goods.set(self.cleaned_data['goods'])
+        return inquiry

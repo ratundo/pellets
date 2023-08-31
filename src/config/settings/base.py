@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.gis",
     "django_extensions",
     "phonenumber_field",
+    "materializecssform",
+    "crispy_forms",
     "main",
     "goods",
     "logistics",
@@ -59,7 +61,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -116,3 +118,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 GRAPH_MODELS = {
     "app_labels": ["main", "goods", "logistics", "inquiry", "offer"],
 }
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'materialize_css_forms'
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
