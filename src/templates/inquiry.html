@@ -1,8 +1,6 @@
 {% extends 'index.html' %}
 
 {% block content %}
-
-
 <div class="container" style="background-color: #757575; padding: 20px;">
     <form method="POST" style="max-width: 800px; margin: auto;">
         {% csrf_token %}
@@ -28,17 +26,15 @@
                 {{ form.phone_number }}
             </div>
             <div class="input-field col s12 m4">
-                <!-- Используем класс dropdown-trigger для создания выпадающего списка -->
-                <a class="dropdown-trigger" href="#!" data-target="languageDropdown">
-                    {{ form.language.label_tag }}
-                    <i class="material-icons right">arrow_drop_down</i>
-                </a>
-                <!-- Используем класс dropdown-content для содержимого выпадающего списка -->
-                <ul id="languageDropdown" class="dropdown-content">
-                    {% for language in form.language.field.queryset %}
-                        <li><a href="#!">{{ language.language_name }}</a></li>
-                    {% endfor %}
-                </ul>
+                <div class="input-field col s12">
+                    <select name="language">
+                        <option value="" disabled selected>Choose your option</option>
+                        {% for language in form.language.field.queryset %}
+                            <option value="{{ language.id }}">{{ language.language_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>{{ form.language.label_tag }}</label>
+                </div>
             </div>
         </div>
 
@@ -52,17 +48,15 @@
                 {{ form.zip_code }}
             </div>
             <div class="input-field col s12 m6">
-                <!-- Используем класс dropdown-trigger для создания выпадающего списка -->
-                <a class="dropdown-trigger" href="#!" data-target="countryDropdown">
-                    {{ form.country.label_tag }}
-                    <i class="material-icons right">arrow_drop_down</i>
-                </a>
-                <!-- Используем класс dropdown-content для содержимого выпадающего списка -->
-                <ul id="countryDropdown" class="dropdown-content">
-                    {% for country in form.country.field.queryset %}
-                        <li><a href="#!">{{ country.country_region }}</a></li>
-                    {% endfor %}
-                </ul>
+                <div class="input-field col s12">
+                    <select name="country">
+                        <option value="" disabled selected>Choose your option</option>
+                        {% for country in form.country.field.queryset %}
+                            <option value="{{ country.id }}">{{ country.country_region }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>{{ form.country.label_tag }}</label>
+                </div>
             </div>
         </div>
 
@@ -89,9 +83,12 @@
     </form>
 </div>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+    });
+</script>
 {% endblock %}
 
-
-{% extends 'index.html' %}
 

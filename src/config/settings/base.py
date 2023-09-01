@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.gis",
     "django_extensions",
     "phonenumber_field",
-    "materializecssform",
+    #'materialize',
     "crispy_forms",
+    "crispy_forms_materialize",
     "main",
     "goods",
     "logistics",
@@ -122,5 +123,6 @@ GRAPH_MODELS = {
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = 'materialize_css_forms'
-CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+CRISPY_ALLOWED_TEMPLATE_PACKS = ("bootstrap5", "materialize_css_forms", "materializecss")
+
+CRISPY_TEMPLATE_PACK = "materialize_css_forms"
