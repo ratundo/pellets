@@ -10,12 +10,13 @@ from main.models import Countries, Languages
 class Customer(models.Model):
     name = models.CharField(max_length=150)
     company = models.CharField(max_length=50)
-    email = models.EmailField(unique=True)
-    phone_number = PhoneNumberField(_("phone number"), max_length=16, unique=True)
+    email = models.EmailField()
+    phone_number = PhoneNumberField(_("phone number"), max_length=16)
     language = models.ForeignKey(Languages, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.company)
+
 
 
 class Inquiry(models.Model):
@@ -26,7 +27,15 @@ class Inquiry(models.Model):
     zip_code = models.CharField(max_length=8)
     goods = models.ManyToManyField(Goods, blank=True)
 
+
+
+
     def __str__(self):
         formatted_date = self.order_date.strftime("%Y-%m-%d %H:%M:%S")
         goods_list = ", ".join(str(good) for good in self.goods.all())
         return f"{formatted_date} {self.place_of_delivery} Goods: {goods_list} - Country: {self.country} Customer: {self.customer}"
+
+
+    class Meta:
+        get_latest_by = "order_date"
+

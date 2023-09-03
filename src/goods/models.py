@@ -23,6 +23,7 @@ class Factory(models.Model):
     uah_eur_rate = models.ForeignKey(CurrencyRates, on_delete=models.CASCADE)
     price_per_ton_eur = models.SmallIntegerField(null=True, blank=True)
     product_photos = models.URLField(null=True, blank=True)
+    active = models.BooleanField(default=True, db_column='Active')
 
     def __str__(self):
         return f"{self.location} {self.goods}"

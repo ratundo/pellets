@@ -17,3 +17,6 @@ class CombinedInquiryCreateView(CreateView):
     def form_valid(self, form):
         messages.success(self.request, "Inquiry sent successfully")
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        return render(self.request, self.template_name, {'form': form})
