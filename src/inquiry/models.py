@@ -18,7 +18,6 @@ class Customer(models.Model):
         return str(self.company)
 
 
-
 class Inquiry(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -27,15 +26,10 @@ class Inquiry(models.Model):
     zip_code = models.CharField(max_length=8)
     goods = models.ManyToManyField(Goods, blank=True)
 
-
-
-
     def __str__(self):
         formatted_date = self.order_date.strftime("%Y-%m-%d %H:%M:%S")
         goods_list = ", ".join(str(good) for good in self.goods.all())
         return f"{formatted_date} {self.place_of_delivery} Goods: {goods_list} - Country: {self.country} Customer: {self.customer}"
 
-
     class Meta:
         get_latest_by = "order_date"
-

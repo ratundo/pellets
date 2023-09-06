@@ -23,7 +23,7 @@ class Factory(models.Model):
     uah_eur_rate = models.ForeignKey(CurrencyRates, on_delete=models.CASCADE)
     price_per_ton_eur = models.SmallIntegerField(null=True, blank=True)
     product_photos = models.URLField(null=True, blank=True)
-    active = models.BooleanField(default=True, db_column='Active')
+    active = models.BooleanField(default=True, db_column="Active")
 
     def __str__(self):
         return f"{self.location} {self.goods}"
@@ -36,11 +36,19 @@ class Factory(models.Model):
 
 
 @receiver(post_save, sender=CurrencyRates)
-def update_factory_prices(sender, instance, **kwargs):
+def update_factory_eur_prices(sender, instance, **kwargs):
     exchange_rate = instance.rate
-    factories = Factory.objects.filter(uah_eur_rate=instance)
+    factories = Factory.objects.all()  # filter(uah_eur_rate=instance)
+    print("hello from signal update_factory_prices")
 
     for factory in factories:
         if factory.price_per_ton_uah:
             factory.price_per_ton_eur = factory.price_per_ton_uah / exchange_rate
+            print(f"new price is {factory.price_per_ton_eur}")
             factory.save()
+
+
+@receiver(post_save, sender=Factory)
+def update_factory_uah_prices(sender, instance, **kwargs):
+    exchange_rate = instance.uah_eur_rate.rate
+    Factory.objects.filter(pk=instance.pk).update(price_per_ton_eur=instance.price_per_ton_uah / exchange_rate)

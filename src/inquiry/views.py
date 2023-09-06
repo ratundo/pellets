@@ -19,4 +19,4 @@ class CombinedInquiryCreateView(CreateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        return render(self.request, self.template_name, {'form': form})
+        return render(self.request, self.template_name, {"form": form})

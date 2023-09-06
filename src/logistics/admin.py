@@ -2,5 +2,7 @@ from django.contrib import admin
 
 from logistics.models import DistanceCalculator
 
-# Register your models here.
-admin.site.register(DistanceCalculator)
+
+@admin.register(DistanceCalculator)
+class DistanceCalculatorModelAdmin(admin.ModelAdmin):
+    readonly_fields = ("start_point", "checkpoints", "end_point", "zip_code", "distance")

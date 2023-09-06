@@ -14,11 +14,7 @@ pillow = "*"
 pyparsing = "*"
 pydot = "*"
 django-extensions = "*"
-django-materializecss-form = "*"
-django-crispy-forms = "*"
-crispy-bootstrap5 = "*"
-django-crispy-bootstrap = "*"
-crispy-forms-materialize = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

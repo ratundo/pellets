@@ -8,7 +8,8 @@ from goods.models import Factory
 from inquiry.models import Inquiry
 from logistics.gm_api_key import API_KEY
 from main.models import Countries
-#from offer.models import PrimaryOffer
+
+# from offer.models import PrimaryOffer
 
 
 # Create your models here.
@@ -88,10 +89,6 @@ class DistanceCalculator(models.Model):
         super().save(*args, **kwargs)
 
 
-
-
-
-
 # class PrimaryOffer(models.Model):
 #     inquiry = models.ForeignKey(Inquiry, on_delete=models.CASCADE, related_name="offers")
 #     factory = models.ForeignKey(Factory, on_delete=models.CASCADE, blank=True, null=True)
@@ -105,4 +102,3 @@ class DistanceCalculator(models.Model):
 #     delivery_price = models.FloatField(blank=True, null=True)
 #     price_dap = models.FloatField(blank=True, null=True)
 #     photos = models.URLField(null=True, blank=True)
-

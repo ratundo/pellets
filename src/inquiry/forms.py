@@ -36,27 +36,25 @@ class CombinedInquiryForm(forms.ModelForm):
         ]
 
     def save(self, commit=True):
-        email = self.cleaned_data['email']
+        email = self.cleaned_data["email"]
 
         try:
             customer = Customer.objects.get(email=email)
         except ObjectDoesNotExist:
-
             customer = Customer.objects.create(
-                name=self.cleaned_data['customer_name'],
-                company=self.cleaned_data['company'],
+                name=self.cleaned_data["customer_name"],
+                company=self.cleaned_data["company"],
                 email=email,
-                phone_number=self.cleaned_data['phone_number'],
-                language=self.cleaned_data['language']
+                phone_number=self.cleaned_data["phone_number"],
+                language=self.cleaned_data["language"],
             )
-
 
         inquiry = Inquiry.objects.create(
             customer=customer,
-            place_of_delivery=self.cleaned_data['place_of_delivery'],
-            zip_code=self.cleaned_data['zip_code'],
-            country=self.cleaned_data['country']
+            place_of_delivery=self.cleaned_data["place_of_delivery"],
+            zip_code=self.cleaned_data["zip_code"],
+            country=self.cleaned_data["country"],
         )
-        inquiry.goods.set(self.cleaned_data['goods'])
+        inquiry.goods.set(self.cleaned_data["goods"])
 
         return inquiry
