@@ -26,7 +26,7 @@ class PrimaryOffer(models.Model):
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.inquiry.order_date} - {self.product} to {self.inquiry.place_of_delivery} for {self.inquiry.customer.company}"
+        return f"{self.inquiry.order_date} - {self.product} to {self.inquiry.place_of_delivery} for {self.inquiry.customer.company}" # NOQA
 
 
 class UpdatedOffer(models.Model):
@@ -92,7 +92,7 @@ def inquiry_goods_changed(sender, instance, action, **kwargs):
 
             print(f"delivery_price: {delivery_price}")
 
-            offer = PrimaryOffer.objects.create(
+            offer = PrimaryOffer.objects.create( # NOQA
                 inquiry=instance,
                 factory=factory,
                 distance=distance,
