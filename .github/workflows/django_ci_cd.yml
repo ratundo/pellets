@@ -27,9 +27,10 @@ jobs:
         run: |
           pipenv --python ${{ matrix.python-version }}
           pipenv install --dev
+          pipenv install python3-gdal
       - name: Check migrations
         run: |
-          pipenv install python3-gdal
+          
           pipenv run python src/manage.py makemigrations
           pipenv run python src/manage.py migrate
           pipenv run python src/manage.py check
