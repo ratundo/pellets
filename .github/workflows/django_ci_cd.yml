@@ -27,7 +27,8 @@ jobs:
         run: |
           pipenv --python ${{ matrix.python-version }}
           pipenv install --dev
-          pipenv install python3-gdal
+          sudo apt-get install python3-gdal
+
       - name: Check migrations
         run: |
           
