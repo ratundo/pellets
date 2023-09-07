@@ -1,5 +1,3 @@
-from unittest.mock import patch
-
 from decouple import config
 from django.core.exceptions import ValidationError
 from django.test import TestCase
@@ -66,8 +64,6 @@ class DistanceCalculatorTestCase(TestCase):
             country=self.country,
             customer=self.customer,
         )
-
-
 
     def test_delivery_checkpoint(self):
         distance_calculator = DistanceCalculator.objects.create(

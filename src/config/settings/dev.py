@@ -1,7 +1,5 @@
 import sys
 
-from django.db.backends.sqlite3 import base
-
 from config.settings.base import *  # NOQA
 
 DEBUG = True
