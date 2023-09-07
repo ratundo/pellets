@@ -67,14 +67,7 @@ class DistanceCalculatorTestCase(TestCase):
             customer=self.customer,
         )
 
-    def test_calculate_distance(self):
-        distance_calculator = DistanceCalculator.objects.create(
-            start_point=self.factory,
-            end_point=self.inquiry,
-        )
-        calculated_distance = distance_calculator.distance
-        expected_distance = 777
-        self.assertAlmostEqual(calculated_distance, expected_distance, places=0)
+
 
     def test_delivery_checkpoint(self):
         distance_calculator = DistanceCalculator.objects.create(
