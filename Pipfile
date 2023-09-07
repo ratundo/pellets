@@ -16,6 +16,9 @@ pydot = "*"
 django-extensions = "*"
 djangorestframework = "*"
 python-decouple = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
 
 [dev-packages]
 

@@ -66,7 +66,7 @@ class DistanceCalculatorTestCase(TestCase):
         )
 
     def test_delivery_checkpoint(self):
-        distance_calculator = DistanceCalculator.objects.create( # NOQA
+        distance_calculator = DistanceCalculator.objects.create(  # NOQA
             start_point=self.factory,
             end_point=self.inquiry,
         )

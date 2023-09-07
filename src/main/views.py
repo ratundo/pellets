@@ -1,4 +1,4 @@
-from django.shortcuts import render # NOQA
+from django.shortcuts import render  # NOQA
 from django.views.generic import TemplateView
 
 

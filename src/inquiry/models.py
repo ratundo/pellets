@@ -28,7 +28,7 @@ class Inquiry(models.Model):
     def __str__(self):
         formatted_date = self.order_date.strftime("%Y-%m-%d %H:%M:%S")
         goods_list = ", ".join(str(good) for good in self.goods.all())
-        return f"{formatted_date} {self.place_of_delivery} Goods: {goods_list} - Country: {self.country} Customer: {self.customer}" # NOQA
+        return f"{formatted_date} {self.place_of_delivery} Goods: {goods_list} - Country: {self.country} Customer: {self.customer}"  # NOQA
 
     class Meta:
         get_latest_by = "order_date"

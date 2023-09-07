@@ -1,5 +1,7 @@
 from django.urls import include, path
-from rest_framework import routers
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions, routers
 
 from api.views import (CurrencyRateUpdateView, CustomerListCreateView,
                        DistanceDeleteView, DistanceListAPIView,
@@ -9,6 +11,19 @@ from api.views import (CurrencyRateUpdateView, CustomerListCreateView,
 
 app_name = "api"
 router = routers.DefaultRouter()
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Pellets API",
+        default_version="v1",
+        description="API for processing orders and price updates",
+        term_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="admin@admin.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=[permissions.AllowAny],
+)
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -21,4 +36,6 @@ urlpatterns = [
     path("inquiries/", InquiryListCreateView.as_view(), name="inquiries"),
     path("offers/", PrimaryOfferListAPIView.as_view(), name="offers"),
     path("offers/<int:pk>", PrimaryOfferDeactivatorView.as_view(), name="primary_offer_deactivator"),
+    path("auth/", include("djoser.urls.jwt")),
+    path("docs/", schema_view.with_ui("redoc", cache_timeout=0), name="swagger_docs"),
 ]
