@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class CurrencyRates(models.Model):
     pair_name = models.CharField(max_length=10, blank=False)
     rate = models.FloatField()

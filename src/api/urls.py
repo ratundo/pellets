@@ -9,7 +9,6 @@ from api.views import (CurrencyRateUpdateView, CustomerListCreateView,
 
 app_name = "api"
 router = routers.DefaultRouter()
-# router.register("rates", CurrencyRateUpdateView)
 
 urlpatterns = [
     path("", include(router.urls)),

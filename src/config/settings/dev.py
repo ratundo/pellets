@@ -22,4 +22,6 @@ DATABASES = {
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-print(STATICFILES_DIRS)
+GRAPH_MODELS = {
+    "app_labels": ["main", "goods", "logistics", "inquiry", "offer"],
+}

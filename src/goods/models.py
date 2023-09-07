@@ -5,7 +5,6 @@ from django.dispatch import receiver
 from main.models import CurrencyRates
 
 
-# Create your models here.
 class Goods(models.Model):
     product_name = models.CharField(max_length=50)
     total_weight = models.DecimalField(max_digits=4, decimal_places=2)

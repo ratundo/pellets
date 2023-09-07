@@ -15,6 +15,7 @@ pyparsing = "*"
 pydot = "*"
 django-extensions = "*"
 djangorestframework = "*"
+python-decouple = "*"
 
 [dev-packages]
 

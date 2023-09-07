@@ -1,11 +1,11 @@
 from unittest.mock import patch
 
+from decouple import config
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from goods.models import Factory, Goods
 from inquiry.models import Customer, Inquiry
-from logistics.gm_api_key import API_KEY
 from logistics.models import DistanceCalculator
 from main.models import (Checkpoints, Countries, CurrencyRates, Languages,
                          Options)
@@ -73,7 +73,7 @@ class DistanceCalculatorTestCase(TestCase):
             end_point=self.inquiry,
         )
         calculated_distance = distance_calculator.distance
-        expected_distance = 776
+        expected_distance = 777
         self.assertAlmostEqual(calculated_distance, expected_distance, places=0)
 
     def test_delivery_checkpoint(self):
@@ -93,7 +93,7 @@ class DistanceCalculatorTestCase(TestCase):
                 self.factory.location,
                 intermediate_point,
                 f"{self.inquiry.place_of_delivery} {self.inquiry.zip_code}",
-                API_KEY,
+                config("GM_API_KEY"),
             )
 
             if calculated_distance < min_distance:

@@ -6,7 +6,6 @@ from goods.models import Goods
 from main.models import Countries, Languages
 
 
-# Create your models here.
 class Customer(models.Model):
     name = models.CharField(max_length=150)
     company = models.CharField(max_length=50)

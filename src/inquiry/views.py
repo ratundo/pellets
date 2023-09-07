@@ -7,7 +7,6 @@ from inquiry.forms import CombinedInquiryForm
 from inquiry.models import Inquiry
 
 
-# Create your views here.
 class CombinedInquiryCreateView(CreateView):
     model = Inquiry
     form_class = CombinedInquiryForm

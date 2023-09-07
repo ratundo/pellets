@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     "django_extensions",
     "phonenumber_field",
     "rest_framework",
-    # "crispy_forms",
-    #  "crispy_forms_materialize",
     "main",
     "goods",
     "logistics",
@@ -116,12 +114,6 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-GRAPH_MODELS = {
-    "app_labels": ["main", "goods", "logistics", "inquiry", "offer"],
-}
-
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("bootstrap5", "materialize_css_forms", "materializecss")
 

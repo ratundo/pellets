@@ -1,18 +1,11 @@
 import requests
+from decouple import config
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.db.models.signals import m2m_changed
-from django.dispatch import receiver
 
 from goods.models import Factory
 from inquiry.models import Inquiry
-from logistics.gm_api_key import API_KEY
 from main.models import Countries
-
-# from offer.models import PrimaryOffer
-
-
-# Create your models here.
 
 
 class DistanceCalculator(models.Model):
@@ -73,7 +66,7 @@ class DistanceCalculator(models.Model):
         if existing_distance:
             return
         if self.start_point and self.end_point and (not self.distance or self.distance == 0):
-            api_key = API_KEY
+            api_key = config("GM_API_KEY")
             origin = self.start_point.location
             destination = f"{self.end_point.place_of_delivery} {self.end_point.zip_code}"
             checkpoints = self.end_point.country.checkpoints.all()
