@@ -118,5 +118,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("bootstrap5", "materialize_css_forms", "materializecss")
 
 CRISPY_TEMPLATE_PACK = "materialize_css_forms"
-
-GDAL_LIBRARY_PATH = '/user/lib/libgdal.so'  #

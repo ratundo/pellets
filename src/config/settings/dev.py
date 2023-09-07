@@ -1,3 +1,7 @@
+import sys
+
+from django.db.backends.sqlite3 import base
+
 from config.settings.base import *  # NOQA
 
 DEBUG = True
@@ -14,6 +18,11 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+if "test" in sys.argv or "test_coverage" in sys.argv:
+    # Disable GDAL for tests
+    DATABASES["default"]["ENGINE"] = "django.db.backends.sqlite3"
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
