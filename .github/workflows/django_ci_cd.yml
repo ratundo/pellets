@@ -33,5 +33,7 @@ jobs:
           pipenv run python src/manage.py migrate
           pipenv run python src/manage.py check
       - name: Run tests
+        env:
+          GM_API_KEY: ${{ secrets.GM_API_KEY }}
         run: |
           pipenv run python src/manage.py test && pipenv run flake8
