@@ -94,7 +94,7 @@ class TestApi(APITestCase):
         factory_update_data = {
             "price_per_ton_uah": new_price_per_ton_uah,
         }
-        update_response = self.client.patch(reverse("api:factory_price", kwargs={"pk": 1}), factory_update_data)
+        update_response = self.client.patch(reverse("api:factory_price", kwargs={"pk": 1}), factory_update_data) # NOWA
         self.assertEqual(Factory.objects.get(id=1).price_per_ton_uah, new_price_per_ton_uah)
 
     def test_new_customer_create(self, create_response=None):
