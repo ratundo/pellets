@@ -109,4 +109,3 @@ class DistanceCalculatorTestCase(TestCase):
 
         with self.assertRaises(ValidationError):
             distance_calculator2.full_clean()
-
