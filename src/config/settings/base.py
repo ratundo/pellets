@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "drf_yasg",
-    "django.contrib.gis",
+    # "django.contrib.gis",
     "django_extensions",
     "phonenumber_field",
     "rest_framework",

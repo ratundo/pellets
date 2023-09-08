@@ -112,7 +112,6 @@ class TestApi(APITestCase):
         self.assertEqual(create_customer.status_code, HTTPStatus.CREATED)
         self.assertIsNotNone(created_customer)
 
-
     def test_distance_delete(self):
         self.client.force_authenticate(user=self.user)
 
@@ -127,4 +126,3 @@ class TestApi(APITestCase):
 
         self.assertEqual(delete_response.status_code, HTTPStatus.NO_CONTENT)
         self.assertIsNone(DistanceCalculator.objects.filter(pk=distance_calculator.pk).first())
-
