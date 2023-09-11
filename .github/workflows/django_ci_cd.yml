@@ -10,7 +10,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest]
         python-version: ["3.10"]
 
     steps:
@@ -27,11 +27,16 @@ jobs:
         run: |
           pipenv --python ${{ matrix.python-version }}
           pipenv install --dev
+          
+
       - name: Check migrations
         run: |
+          
           pipenv run python src/manage.py makemigrations
           pipenv run python src/manage.py migrate
           pipenv run python src/manage.py check
       - name: Run tests
+        env:
+          GM_API_KEY: ${{ secrets.GM_API_KEY }}
         run: |
           pipenv run python src/manage.py test && pipenv run flake8

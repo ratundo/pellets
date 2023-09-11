@@ -1,0 +1,107 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container" style="background-color: #757575; padding: 20px;">
+    <form method="POST" style="max-width: 800px; margin: auto;">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="input-field col s12 m4">
+                {{ form.customer_name.label_tag }}
+                {{ form.customer_name }}
+                {{ form.customer_name.errors }}
+            </div>
+            <div class="input-field col s12 m4">
+                {{ form.company.label_tag }}
+                {{ form.company }}
+                {{ form.company.errors }}
+            </div>
+            <div class="input-field col s12 m4">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12 m4">
+                {{ form.phone_number.label_tag }}
+                {{ form.phone_number }}
+                {{ form.phone_number.errors }}
+            </div>
+            <div class="input-field col s12 m4">
+                <div class="input-field col s12">
+                    <select name="language">
+                        <option value="" disabled selected>Choose your option</option>
+                        {% for language in form.language.field.queryset %}
+                            <option value="{{ language.id }}">{{ language.language_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>{{ form.language.label_tag }}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form.place_of_delivery.label_tag }}
+                {{ form.place_of_delivery }}
+                {{ form.place_of_delivery.errors }}
+            </div>
+            <div class="input-field col s12 m6">
+                {{ form.zip_code.label_tag }}
+                {{ form.zip_code }}
+                {{ form.zip_code_errors }}
+            </div>
+            <div class="input-field col s12 m6">
+                <div class="input-field col s12">
+                    <select name="country">
+                        <option value="" disabled selected>Choose your option</option>
+                        {% for country in form.country.field.queryset %}
+                            <option value="{{ country.id }}">{{ country.country_region }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>{{ form.country.label_tag }}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                {{ form.goods.label_tag }}
+                <br>
+                {% for choice in form.goods.field.choices %}
+                    <p>
+                        <label>
+                            <input type="checkbox" name="{{ form.goods.html_name }}" value="{{ choice.0 }}">
+                            <span>{{ choice.1 }}</span>
+                        </label>
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <button type="submit" class="btn btn-info orange darken-2">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+    });
+</script>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="static/js/materialize.js"></script>
+  <script src="static/js/init.js"></script>
+
+
+{% endblock %}
+
+

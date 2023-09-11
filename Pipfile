@@ -5,9 +5,22 @@ name = "pypi"
 
 [packages]
 django = "==4.2.4"
+chardet = "*"
+charset_normalizer = "*"
 flake8 = "*"
 black = "*"
 isort = "*"
+django-phonenumber-field = {version = "*", extras = ["phonenumbers"]}
+requests = "*"
+pillow = "*"
+pyparsing = "*"
+pydot = "*"
+django-extensions = "*"
+djangorestframework = "*"
+python-decouple = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
