@@ -2,8 +2,10 @@ FROM python:3.10-rc-slim
 
 ENV PIPENV_VERBOSITY -1
 
-RUN apt update
+RUN apt-get update
+
 RUN pip install pipenv
+
 RUN mkdir /pellets
 
 WORKDIR /pellets
@@ -15,4 +17,4 @@ RUN pipenv install --dev --system --deploy
 
 COPY . .
 
-CMD ["bash"]
+CMD ["python", "./src/manage.py", "runserver", "0.0.0.0:8000"]
