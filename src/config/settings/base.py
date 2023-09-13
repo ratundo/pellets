@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "drf_yasg",
-    # "django.contrib.gis",
+    #"django.contrib.gis",
     "django_extensions",
     "phonenumber_field",
     "rest_framework",
@@ -132,3 +132,5 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=14),
 }
+
+#GDAL_LIBRARY_PATH = './'

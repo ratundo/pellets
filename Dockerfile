@@ -13,8 +13,8 @@ WORKDIR /pellets
 COPY ./src ./src
 COPY Pipfile Pipfile.lock ./
 
-RUN pipenv install --dev --system --deploy
+RUN pipenv install --deploy
+RUN pipenv install django==4.2.4
 
-COPY . .
+CMD ["./commands/start_server_dev.sh"]
 
-CMD ["python", "./src/manage.py", "runserver", "0.0.0.0:8000"]
