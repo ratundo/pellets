@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "logistics",
     "inquiry",
     "offer",
+    "content",
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block content %}
+  <ul class="collapsible popout">
+ {% for question in faq %}
+    <li>
+      <div class="collapsible-header">{{ question.question }}</div>
+      <div class="collapsible-body">{{ question.answer }}</span></div>
+    </li>
+    {% endfor %}
+
+  </ul>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems);
+    });
+  </script>
+{% endblock %}

@@ -1,9 +1,11 @@
 from django.shortcuts import render  # NOQA
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+
+from main.models import HappyCustomers
 
 
 # Create your views here.
-class IndexView(TemplateView):
+class HappyCustomerView(ListView):
+    model = HappyCustomers
     template_name = "index.html"
-    http_method_names = ["get"]
-    extra_context = {"site_name": "Super puper LMS", "description": "Sator arepo tenet opera rotas"}
+    context_object_name = "happy_customers"

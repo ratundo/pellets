@@ -14,6 +14,9 @@ class HappyCustomers(models.Model):
     company_link = models.URLField()
     company_logo = models.ImageField(upload_to="static/logos/", null=True, blank=True)
 
+    def __str__(self):
+        return str(self.company_name)
+
 
 class Options(models.Model):
     marge = models.FloatField()
