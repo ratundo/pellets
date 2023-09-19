@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render # NOQA
 from django.views.generic import ListView
 
 from content.models import Faq
