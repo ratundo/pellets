@@ -32,7 +32,7 @@
             <div class="input-field col s12 m4">
                 <div class="input-field col s12">
                     <select name="language">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" disabled selected>Language / Sprache / Język / Jazyk / Limba</option>
                         {% for language in form.language.field.queryset %}
                             <option value="{{ language.id }}">{{ language.language_name }}</option>
                         {% endfor %}
@@ -56,7 +56,7 @@
             <div class="input-field col s12 m6">
                 <div class="input-field col s12">
                     <select name="country">
-                        <option value="" disabled selected>Choose your option</option>
+                        <option value="" disabled selected>Country / Land / Kraj / Země / Țara</option>
                         {% for country in form.country.field.queryset %}
                             <option value="{{ country.id }}">{{ country.country_region }}</option>
                         {% endfor %}

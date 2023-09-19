@@ -10,7 +10,7 @@ charset_normalizer = "*"
 flake8 = "*"
 black = "*"
 isort = "*"
-django-phonenumber-field = {version = "*", extras = ["phonenumbers"]}
+django-phonenumber-field = { extras = ["phonenumbers"]}
 requests = "*"
 pillow = "*"
 pyparsing = "*"

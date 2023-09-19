@@ -13,8 +13,7 @@ WORKDIR /pellets
 COPY ./src ./src
 COPY Pipfile Pipfile.lock ./
 
-RUN pipenv install --dev --system --deploy
+RUN pipenv install --deploy
 
-COPY . .
+CMD ["bash"]
 
-CMD ["python", "./src/manage.py", "runserver", "0.0.0.0:8000"]
