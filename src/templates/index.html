@@ -9,14 +9,16 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link type="text/css" href="static/css/emoji.css">
 
   <!-- Подключение стилей Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 <!-- Подключение скриптов Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
 
 
 
@@ -38,12 +40,12 @@
 
 <nav style="background-color: #757575; height: 80px;">
   <div class="nav-wrapper" style="height: 100%; display: flex; align-items: center;">
-    <a href="#" class="brand-logo center" style="flex: 1; display: flex; align-items: center;">
+    <a href="{% url 'main:happy_customers' %}" class="brand-logo center" style="flex: 1; display: flex; align-items: center;">
       <img src="{% static 'img/logo.png' %}" alt="Logo" style="width: 190px; height: auto; margin: 0 auto;">
     </a>
     <ul class="left hide-on-med-and-down">
       <li><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="position: relative;">About us<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="sass.html">FAQ</a></li>
+      <li><a href="{% url 'content:faq' %}">FAQ</a></li>
       <li><a href="badges.html">Blog</a></li>
       <li><a class="dropdown-trigger" href="#!" data-target="productsDropdown" style="position: relative;">Products<i class="material-icons right">arrow_drop_down</i></a></li>
       <li class="active"><a href="collapsible.html">Contacts</a></li>
@@ -111,6 +113,8 @@
 {% block content %}
 
   <div id="index-banner" class="parallax-container">
+
+
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
@@ -192,16 +196,22 @@
   </div>
 
 
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="{% static 'img/background3.jpg' %}" alt="Unsplashed background img 3"></div>
+  <!-- <div class="parallax-container valign-wrapper"> -->
+
+{% block carousel %}
+  <h3>Our valued customers</h3>
+  <div class="carousel">
+    {% for customer in happy_customers %}
+    <a class="carousel-item" href="{{ customer.company_link }}"><img src="{{ customer.company_logo }}"
+    alt="{{ customer.company_name }}"> </a>
+    {% endfor %}
   </div>
+{% endblock %}
+
+
+  </div>
+
+
 
 {% endblock %}
 
@@ -255,6 +265,95 @@
         var instances = M.Dropdown.init(elems);
     });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+</script>
+
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+
+<script>
+  // Заменяет текстовые эмодзи на изображения Twemoji
+  twemoji.parse(document.body);
+</script>
+
+<script>
+// Обработать каждую картинку в карусели после ее загрузки
+document.addEventListener('DOMContentLoaded', function () {
+  const carouselItems = document.querySelectorAll('.carousel-item');
+
+  carouselItems.forEach(function (item) {
+    twemoji.parse(item);
+  });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const carousel = document.querySelector('.carousel');
+  const instances = M.Carousel.init(carousel, {
+    fullWidth: true, // Растягивает карусель на всю ширину страницы
+    indicators: true, // Отображает индикаторы
+    duration: 2000, // Продолжительность отображения слайда (2 секунды)
+    shift: 0, // Начальное смещение (0, чтобы начать с первого слайда)
+    numVisible: 1, // Количество видимых элементов (1, чтобы отображать только один слайд)
+    interval: 5000, // Интервал между автоматической сменой слайдов (5 секунд)
+    padding: 10 // Отступ между слайдами (10 пикселей)
+  });
+
+  // Настройка фона и высоты слайдов
+  const carouselItems = carousel.querySelectorAll('.carousel-item');
+  let maxHeight = 0;
+
+  carouselItems.forEach(item => {
+    item.style.background = 'rgba(255, 255, 0, 0.2)'; // Жёлтый бледный фон
+    const img = item.querySelector('img');
+    if (img) {
+      const imgHeight = img.clientHeight;
+      if (imgHeight > maxHeight) {
+        maxHeight = imgHeight;
+      }
+      // Выравниваем изображение посередине кадра по высоте
+      img.style.position = 'absolute';
+      img.style.top = '50%';
+      img.style.transform = 'translateY(-50%)';
+    }
+  });
+
+  carousel.style.height = `${maxHeight}px`; // Устанавливаем высоту по наибольшей картинке
+
+  // Начать автоматическую прокрутку
+  let autoplayInterval = setInterval(function() {
+    instances.next(); // Перейти к следующему слайду
+  }, 5000); // 5000 миллисекунд (5 секунд) между сменой слайдов
+
+  // Остановить автоматическую прокрутку при наведении
+  carousel.addEventListener('mouseenter', function() {
+    clearInterval(autoplayInterval);
+  });
+
+  // Возобновить автоматическую прокрутку при уходе с карусели
+  carousel.addEventListener('mouseleave', function() {
+    autoplayInterval = setInterval(function() {
+      instances.next();
+    }, 5000);
+  });
+});
+</script>
+
+
+
+
+
 
 
   </body>
