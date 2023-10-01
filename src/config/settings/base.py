@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "rest_framework",
     "djoser",
+    "ckeditor",
     "main",
     "goods",
     "logistics",

@@ -1,10 +1,12 @@
+import os
+
 from config.settings.base import *  # NOQA
 
 DEBUG = False
 
-SECRET_KEY = "django-insecure-(r0d+yvyn+atl#k$8+ovofm6$$=w_pi^i*m)cfer1ujk16^e*!"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 DATABASES = {
     "default": {
@@ -17,3 +19,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static/"  # NOQA
+
+MEDIA_ROOT = BASE_DIR / "media/"  # NOQA
+MEDIA_URL = "/media/"

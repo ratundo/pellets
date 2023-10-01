@@ -7,7 +7,7 @@ DEBUG = True
 
 SECRET_KEY = "django-secret-key"
 
-ALLOWED_HOSTS = ["127.0.0.1", "*"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "*"]
 
 INSTALLED_APPS += []
 
@@ -51,7 +51,11 @@ if "test" in sys.argv or os.environ.get("DJANGO_SETTINGS_MODULE") == "config.set
 
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "static/"  # NOQA
+
+MEDIA_ROOT = BASE_DIR / "media/"  # NOQA
+MEDIA_URL = "/media/"
 
 GRAPH_MODELS = {
     "app_labels": ["main", "goods", "logistics", "inquiry", "offer"],

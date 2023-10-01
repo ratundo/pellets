@@ -11,61 +11,55 @@
 
 </head>
 <body>
-!Before img
-
-<div class="slider">
-	<div class="slide-track">
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="">
-		</div>
-		<div class="slide">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="">
-		</div>
-	</div>
+<div class="timeline">
+  <div class="timeline-item">
+    <div class="year">2000</div>
+    <div class="event">Событие 1</div>
+  </div>
+  <div class="timeline-item">
+    <div class="year">2005</div>
+    <div class="event">Событие 2</div>
+  </div>
+  <!-- Добавьте больше элементов по мере необходимости -->
 </div>
 
 
 !After img
 <script>
-    var instance = M.Carousel.init({
-    fullWidth: true
-  });
+$(document).ready(function() {
+  // Настройка автоматической прокрутки (измените скорость и направление при необходимости)
+  var scrollSpeed = 2; // Скорость прокрутки
+  var direction = "right"; // Направление прокрутки (left или right)
+
+  // Функция для автоматической прокрутки полосы прокрутки
+  function startScroll() {
+    var wrapper = $(".timeline");
+    var container = $(".timeline-item");
+    var wrapperWidth = wrapper.width();
+    var containerWidth = container.width();
+    var scrollLeft = 0;
+
+    setInterval(function() {
+      if (direction === "right") {
+        scrollLeft += scrollSpeed;
+        if (scrollLeft >= containerWidth - wrapperWidth) {
+          scrollLeft = 0;
+        }
+      } else if (direction === "left") {
+        scrollLeft -= scrollSpeed;
+        if (scrollLeft <= 0) {
+          scrollLeft = containerWidth - wrapperWidth;
+        }
+      }
+
+      wrapper.scrollLeft(scrollLeft);
+    }, 1000 / 60); // Обновление каждые 16.67 миллисекунд (60 кадров в секунду)
+  }
+
+  // Запуск автоматической прокрутки
+  startScroll();
+});
+
 
 </script>>
 

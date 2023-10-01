@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="container">
+
+ <h2>{{ blog_post.title }}</h2>
+
+ {{ blog_post.text|safe }}
+
+
+<div>
+
+{% endblock %}
