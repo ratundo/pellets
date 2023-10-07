@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.dev_local")
     if sys.argv[1].lower() == "test":
         print("Note: Running black formatter")
         print(os.popen("black --config ../.black.toml .").read())  # NOQA

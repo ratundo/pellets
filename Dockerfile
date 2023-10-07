@@ -10,7 +10,8 @@ RUN mkdir /pellets
 
 WORKDIR /pellets
 
-COPY ./src ./src
+COPY ./src ./src ./\
+COPY ./commands ./commands
 COPY Pipfile Pipfile.lock ./
 
 RUN pipenv install --deploy

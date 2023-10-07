@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="container">
+
+ {% for article in blog %}
+   <div class="section">
+    <a style="color: black" href="{% url 'content:blog_post' slug=article.slug %}">{{article.title}}</a>
+    {{article.created_at}}
+    {{article.summary|safe}}
+   </div>
+ {% endfor %}
+
+
+<div>
+
+{% endblock %}
